@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponte Cais | Restaurante & Bar — Inhambane</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --ocean: #006994;
+            --ocean-light: #0891b2;
+            --sand: #f5e6c8;
+            --sand-dark: #e8d5a3;
+            --coral: #FF6B47;
+            --coral-dark: #e5532f;
+            --lime: #84cc16;
+            --white: #FFFFFF;
+            --dark: #1a2332;
+            --dark-blue: #0f1e2e;
+            --teal: #0d9488;
+            --sunset: #fb923c;
+            --header-bg: rgba(15,30,46,0.92);
+            --admin-accent: #FF6B47;
+            --admin-bg: #0a1520;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--dark-blue);
+            color: var(--white);
+            font-family: 'Nunito', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Waves decorative */
+        .wave-divider {
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            margin: 0;
+        }
+        .wave-divider svg { display: block; width: 100%; }
+
+        /* === SECTIONS SPA === */
+        section { display: none; animation: fadeOcean 0.6s ease both; }
+        section.active { display: block; }
+
+        @keyframes fadeOcean {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === BUTTONS === */
+        .btn {
+            padding: 13px 28px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 50px;
+        }
+        .btn-coral { background: var(--coral); color: white; box-shadow: 0 4px 18px rgba(255,107,71,0.4); }
+        .btn-coral:hover { background: var(--coral-dark); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(255,107,71,0.55); }
+        .btn-ocean { background: var(--ocean); color: white; }
+        .btn-ocean:hover { background: var(--ocean-light); transform: translateY(-3px); }
+        .btn-outline-sand { border: 2px solid var(--sand); color: var(--sand); background: transparent; }
+        .btn-outline-sand:hover { background: var(--sand); color: var(--dark); transform: translateY(-2px); }
+        .btn-whatsapp { background: #25d366; color: white; box-shadow: 0 4px 18px rgba(37,211,102,0.4); }
+        .btn-whatsapp:hover { background: #1db954; transform: translateY(-3px); }
+
+        /* === HEADER === */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--header-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 0.9rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.3s;
+        }
+        header.scrolled { padding: 0.65rem 5%; box-shadow: 0 4px 30px rgba(0,0,0,0.5); }
+
+        .logo {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.7rem;
+            color: var(--sand);
+            text-shadow: 0 0 20px rgba(255,230,170,0.4);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-wave { color: var(--ocean-light); font-size: 1.2rem; }
+
+        nav { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+        .nav-link {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            cursor: pointer;
+            padding: 6px 14px;
+            border-radius: 20px;
+            transition: all 0.25s;
+            border: none;
+            background: none;
+            text-decoration: none;
+        }
+        .nav-link:hover, .nav-link.active-link {
+            background: rgba(255,107,71,0.18);
+            color: var(--coral);
+        }
+
+        .open-badge {
+            background: #22c55e;
+            color: white;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 20px;
+            animation: pulse-green 2s infinite;
+            white-space: nowrap;
+        }
+        @keyframes pulse-green {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+            50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+        }
+
+        /* === HERO === */
+        #home { min-height: 100vh; position: relative; overflow: hidden; }
+
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(160deg, #0f1e2e 0%, #00334d 40%, #005a7a 70%, #006994 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Ocean animated background */
+        .ocean-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .ocean-bg::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -50%;
+            width: 200%;
+            height: 300px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23006994' fill-opacity='0.4' d='M0,192L48,181.3C96,171,192,149,288,154.7C384,160,480,192,576,197.3C672,203,768,181,864,165.3C960,149,1056,139,1152,149.3C1248,160,1344,192,1392,208L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") center bottom no-repeat;
+            background-size: cover;
+            animation: wave-anim 8s ease-in-out infinite;
+        }
+        .ocean-bg::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -50%;
+            width: 200%;
+            height: 200px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%230891b2' fill-opacity='0.25' d='M0,288L48,261.3C96,235,192,181,288,170.7C384,160,480,192,576,218.7C672,245,768,267,864,256C960,245,1056,203,1152,192C1248,181,1344,203,1392,213.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") center bottom no-repeat;
+            background-size: cover;
+            animation: wave-anim 6s ease-in-out infinite reverse;
+        }
+        @keyframes wave-anim {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(5%); }
+        }
+
+        /* Stars/bubbles */
+        .bubbles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            animation: float-up linear infinite;
+        }
+        @keyframes float-up {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+        }
+
+        .hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 5% 8rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-label {
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--sand);
+            background: rgba(245,230,200,0.12);
+            border: 1px solid rgba(245,230,200,0.25);
+            padding: 6px 18px;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .hero-title {
+            font-family: 'Pacifico', cursive;
+            font-size: clamp(3rem, 9vw, 6.5rem);
+            color: var(--white);
+            text-shadow: 0 4px 40px rgba(0,0,0,0.5);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+        .hero-title .accent { color: var(--coral); }
+
+        .hero-sub {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--sand);
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .hero-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 2.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .stars { color: #fbbf24; font-size: 1.1rem; }
+        .rating-num { font-weight: 800; font-size: 1.1rem; color: var(--sand); }
+        .rating-count { color: rgba(255,255,255,0.55); font-size: 0.85rem; }
+        .badge-open {
+            background: #22c55e;
+            color: white;
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+        /* Floating sunset vibes card */
+        .sunset-card {
+            position: absolute;
+            bottom: 140px;
+            right: 5%;
+            background: rgba(255,107,71,0.15);
+            border: 1px solid rgba(255,107,71,0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 16px 20px;
+            font-size: 0.82rem;
+            color: var(--sand);
+            max-width: 180px;
+            text-align: center;
+            animation: float-card 4s ease-in-out infinite;
+        }
+        .sunset-card i { font-size: 1.5rem; color: var(--sunset); margin-bottom: 6px; display: block; }
+        @keyframes float-card {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Karaoke badge */
+        .karaoke-card {
+            position: absolute;
+            bottom: 140px;
+            left: 5%;
+            background: rgba(13,148,136,0.15);
+            border: 1px solid rgba(13,148,136,0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 16px 20px;
+            font-size: 0.82rem;
+            color: var(--sand);
+            max-width: 170px;
+            text-align: center;
+            animation: float-card 4s ease-in-out infinite 2s;
+        }
+        .karaoke-card i { font-size: 1.5rem; color: #5eead4; margin-bottom: 6px; display: block; }
+
+        @media(max-width: 600px) {
+            .sunset-card, .karaoke-card { display: none; }
+        }
+
+        /* === SECTION COMMON === */
+        .section-wrap { padding: 5rem 5%; }
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-label::before { content: ''; display: block; width: 30px; height: 2px; background: var(--coral); }
+        .section-title {
+            font-family: 'Pacifico', cursive;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--sand);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .section-desc { color: rgba(255,255,255,0.6); max-width: 580px; margin-bottom: 3rem; font-size: 1rem; }
+
+        /* === DESTAQUES / FEATURES === */
+        .features-strip {
+            background: linear-gradient(90deg, #006994, #0891b2, #0d9488);
+            padding: 2rem 5%;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+        }
+        .feature-icon {
+            width: 46px;
+            height: 46px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .feature-text strong { display: block; font-size: 0.88rem; font-weight: 800; }
+        .feature-text span { font-size: 0.75rem; opacity: 0.7; }
+
+        /* === GALERIA === */
+        #home .gallery-strip {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: 220px 220px;
+            gap: 6px;
+            max-height: 446px;
+            overflow: hidden;
+        }
+        #home .gallery-strip .gal-item { overflow: hidden; position: relative; }
+        #home .gallery-strip .gal-item:first-child { grid-row: 1 / 3; }
+        #home .gallery-strip .gal-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        #home .gallery-strip .gal-item:hover img { transform: scale(1.06); }
+        .gal-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            padding: 14px;
+        }
+        .gal-tag {
+            background: var(--coral);
+            color: white;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        /* === HIGHLIGHTS/SOBRE === */
+        .about-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .about-img-collage {
+            position: relative;
+        }
+        .about-img-main {
+            width: 100%;
+            border-radius: 20px;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .about-img-float {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 55%;
+            border-radius: 16px;
+            border: 4px solid var(--dark-blue);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+        .about-badge {
+            position: absolute;
+            top: 20px;
+            left: -20px;
+            background: var(--coral);
+            color: white;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-align: center;
+            line-height: 1.2;
+            box-shadow: 0 8px 24px rgba(255,107,71,0.5);
+        }
+        .about-badge strong { font-size: 1.4rem; font-family: 'Pacifico', cursive; }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2.5rem 0;
+        }
+        .stat-box {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .stat-box .num {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.8rem;
+            color: var(--coral);
+            display: block;
+        }
+        .stat-box .lbl { font-size: 0.73rem; opacity: 0.6; font-weight: 600; }
+
+        /* === CARDÁPIO === */
+        .menu-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+        .menu-tab {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.65);
+            border-radius: 50px;
+            padding: 8px 18px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+        .menu-tab.active, .menu-tab:hover {
+            background: var(--coral);
+            border-color: var(--coral);
+            color: white;
+        }
+
+        .menu-category { margin-bottom: 3rem; }
+        .menu-category-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.5rem;
+            color: var(--sand);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .menu-category-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255,107,71,0.4), transparent);
+        }
+        .menu-category-emoji { font-size: 1.3rem; }
+
+        .menu-list { display: flex; flex-direction: column; gap: 0; }
+        .menu-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            gap: 12px;
+            transition: background 0.2s;
+        }
+        .menu-row:hover { background: rgba(255,255,255,0.02); padding-left: 8px; border-radius: 6px; }
+        .menu-row:last-child { border-bottom: none; }
+        .menu-item-name { font-weight: 700; font-size: 0.95rem; color: var(--white); }
+        .menu-item-desc { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-top: 2px; }
+        .menu-item-price {
+            font-family: 'Pacifico', cursive;
+            font-size: 1rem;
+            color: var(--coral);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .menu-grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+        .dish-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        .dish-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+        .dish-card-img {
+            height: 170px;
+            object-fit: cover;
+            width: 100%;
+        }
+        .dish-card-body { padding: 1.1rem; }
+        .dish-card-price {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--coral);
+            color: white;
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        .dish-card-name { font-weight: 800; font-size: 1rem; margin-bottom: 4px; }
+        .dish-card-desc { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+
+        /* admin del button on dish card */
+        .card-admin-del {
+            display: none;
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(200,0,0,0.85);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            z-index: 5;
+        }
+        body.admin-active .card-admin-del { display: flex; align-items: center; justify-content: center; }
+
+        /* === RESERVAS === */
+        .booking-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            align-items: start;
+        }
+        .booking-info-card {
+            background: linear-gradient(135deg, #006994, #0d9488);
+            border-radius: 24px;
+            padding: 2.5rem;
+        }
+        .booking-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        .booking-feature i { color: var(--sand); width: 20px; }
+
+        .form-wrap {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 2rem;
+        }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-group label { display: block; font-size: 0.82rem; font-weight: 700; color: rgba(255,255,255,0.6); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: white;
+            border-radius: 10px;
+            padding: 11px 14px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.95rem;
+            transition: border 0.25s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--coral);
+        }
+        .form-group select option { background: var(--dark); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+        /* === CONTATO === */
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .contact-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            padding: 1.8rem;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .contact-card:hover { transform: translateY(-5px); border-color: rgba(255,107,71,0.3); }
+        .contact-card i { font-size: 2rem; color: var(--coral); margin-bottom: 1rem; }
+        .contact-card h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .contact-card p { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+        .map-cta {
+            max-width: 1100px;
+            margin: 2.5rem auto 0;
+            background: linear-gradient(135deg, rgba(0,105,148,0.3), rgba(13,148,136,0.2));
+            border: 1px solid rgba(0,105,148,0.3);
+            border-radius: 18px;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .map-cta-text strong { display: block; font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; }
+        .map-cta-text span { font-size: 0.85rem; color: rgba(255,255,255,0.55); }
+
+        /* === PROMO SECTIONS === */
+        .promo-banner {
+            max-width: 1100px;
+            margin: 0 auto 3rem;
+            background: linear-gradient(135deg, var(--coral) 0%, #fb923c 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 2rem;
+            overflow: hidden;
+            position: relative;
+        }
+        .promo-banner::before {
+            content: '🍕';
+            position: absolute;
+            right: -20px;
+            bottom: -30px;
+            font-size: 8rem;
+            opacity: 0.15;
+            transform: rotate(-15deg);
+        }
+        .promo-banner h2 { font-family: 'Pacifico', cursive; font-size: 2rem; margin-bottom: 0.5rem; }
+        .promo-banner p { opacity: 0.85; font-size: 1rem; }
+        .promo-img-wrap { width: 200px; height: 160px; border-radius: 16px; overflow: hidden; flex-shrink: 0; }
+        .promo-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        #promo-img-swap { width: 100%; height: 100%; object-fit: cover; }
+
+        /* === FOOTER === */
+        footer {
+            background: #050d15;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 3rem 5% 2rem;
+            text-align: center;
+        }
+        .footer-logo { font-family: 'Pacifico', cursive; font-size: 2rem; color: var(--sand); margin-bottom: 0.5rem; }
+        .footer-tagline { color: rgba(255,255,255,0.4); font-size: 0.85rem; margin-bottom: 1.5rem; }
+        .social-links { display: flex; gap: 12px; justify-content: center; margin-bottom: 1.5rem; }
+        .social-links a {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.12);
+            display: flex; align-items: center; justify-content: center;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.25s;
+        }
+        .social-links a:hover { background: var(--coral); border-color: var(--coral); color: white; }
+        .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.25); margin-bottom: 0.5rem; }
+        .footer-xtack { font-size: 0.72rem; color: rgba(255,107,71,0.45); letter-spacing: 2px; font-weight: 700; }
+
+        /* === WHATSAPP FLOAT === */
+        .wa-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 58px;
+            height: 58px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 6px 28px rgba(37,211,102,0.5);
+            z-index: 900;
+            transition: transform 0.3s;
+            animation: pulse-wa 3s infinite;
+        }
+        .wa-float:hover { transform: scale(1.1); }
+        @keyframes pulse-wa {
+            0%, 100% { box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
+            50% { box-shadow: 0 6px 40px rgba(37,211,102,0.8); }
+        }
+
+        /* === ADMIN === */
+        #admin-trigger {
+            position: fixed;
+            bottom: 0; left: 0;
+            width: 50px; height: 50px;
+            z-index: 800;
+            cursor: default;
+        }
+        #footer-admin-trigger {
+            display: inline-block;
+            width: 20px; height: 20px;
+            opacity: 0; cursor: default;
+        }
+
+        #admin-login {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(6px);
+        }
+        #admin-login.show { display: flex; }
+        .login-box {
+            background: #0f1e2e;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            width: 320px;
+            position: relative;
+            text-align: center;
+        }
+        .login-box h3 { font-family: 'Pacifico', cursive; color: var(--coral); font-size: 1.8rem; margin-bottom: 0.3rem; }
+        .login-box p { font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-bottom: 1.5rem; }
+        .login-box input {
+            width: 100%;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: white;
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 1rem;
+            text-align: center;
+            letter-spacing: 4px;
+            margin-bottom: 0.8rem;
+        }
+        .login-box input:focus { outline: none; border-color: var(--coral); }
+        #login-err { color: #f87171; font-size: 0.8rem; display: none; margin-bottom: 0.8rem; }
+        .login-btn {
+            width: 100%;
+            background: var(--coral);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background 0.25s;
+        }
+        .login-btn:hover { background: var(--coral-dark); }
+        .login-close {
+            position: absolute;
+            top: 12px; right: 12px;
+            background: none; border: none;
+            color: rgba(255,255,255,0.4);
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        #admin-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1400;
+            backdrop-filter: blur(2px);
+        }
+        #admin-overlay.show { display: block; }
+
+        #admin-panel {
+            position: fixed;
+            top: 0; right: -420px;
+            width: 380px;
+            max-width: 95vw;
+            height: 100vh;
+            background: #0a1520;
+            border-left: 1px solid rgba(255,255,255,0.08);
+            z-index: 1500;
+            overflow-y: auto;
+            transition: right 0.4s cubic-bezier(.4,0,.2,1);
+            display: flex;
+            flex-direction: column;
+        }
+        #admin-panel.open { right: 0; }
+        body.admin-active #admin-overlay { display: block; }
+
+        .ap-header {
+            background: var(--admin-accent);
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .ap-header-left { display: flex; align-items: center; gap: 10px; }
+        .ap-header h2 { font-size: 1rem; font-weight: 800; }
+        .ap-header-sub { font-size: 0.72rem; opacity: 0.7; }
+        .ap-close { background: rgba(255,255,255,0.2); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1rem; }
+
+        .ap-body { flex: 1; padding: 1.2rem; overflow-y: auto; }
+        .ap-section { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; overflow: hidden; margin-bottom: 1rem; }
+        .ap-section-title {
+            background: rgba(255,255,255,0.06);
+            padding: 0.8rem 1rem;
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: rgba(255,255,255,0.7);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .ap-section-title i { color: var(--admin-accent); }
+        .ap-section-body { padding: 1rem; }
+        .ap-label { font-size: 0.72rem; font-weight: 700; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px; margin-top: 0.8rem; }
+        .ap-label:first-child { margin-top: 0; }
+        .ap-input {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 8px;
+            padding: 9px 12px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.88rem;
+        }
+        .ap-input:focus { outline: none; border-color: var(--admin-accent); }
+        .ap-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            transition: all 0.25s;
+            margin-top: 0.8rem;
+        }
+        .ap-btn-primary { background: var(--admin-accent); color: white; }
+        .ap-btn-ghost { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.6); }
+        .ap-btn-danger { background: rgba(200,0,0,0.2); color: #f87171; border: 1px solid rgba(200,0,0,0.3); }
+        .ap-logout-row { padding: 1rem 1.2rem 1.5rem; flex-shrink: 0; }
+
+        .upload-area {
+            border: 2px dashed rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            transition: border-color 0.25s;
+            margin-bottom: 0.8rem;
+        }
+        .upload-area:hover { border-color: var(--admin-accent); }
+        .upload-area input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+        .upload-area i { font-size: 1.5rem; color: rgba(255,255,255,0.3); display: block; margin-bottom: 6px; }
+        .upload-area p { font-size: 0.75rem; color: rgba(255,255,255,0.35); }
+        .upload-preview { width: 100%; border-radius: 8px; display: none; margin-bottom: 0.8rem; }
+
+        .accent-colors { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 0.8rem; }
+        .accent-dot { width: 26px; height: 26px; border-radius: 50%; cursor: pointer; border: 3px solid transparent; transition: all 0.2s; }
+        .accent-dot.selected { border-color: white; transform: scale(1.2); }
+        .color-row { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: rgba(255,255,255,0.45); }
+        .color-val { font-family: monospace; font-size: 0.72rem; }
+
+        .admin-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .admin-menu-item img { width: 42px; height: 42px; border-radius: 8px; object-fit: cover; }
+        .admin-menu-item-info { flex: 1; }
+        .admin-menu-item-info strong { display: block; font-size: 0.82rem; }
+        .admin-menu-item-info span { font-size: 0.72rem; color: rgba(255,255,255,0.4); }
+        .admin-menu-item-del { background: none; border: none; color: #f87171; cursor: pointer; padding: 4px 8px; }
+        .menu-form { display: flex; flex-direction: column; }
+
+        /* Toast */
+        #ap-toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: #1f2d3d;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 3000;
+            white-space: nowrap;
+        }
+        #ap-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        /* === RESPONSIVE === */
+        @media(max-width: 900px) {
+            .about-split, .booking-wrap { grid-template-columns: 1fr; }
+            .about-img-float { display: none; }
+            .about-badge { left: 10px; }
+            #home .gallery-strip { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+            #home .gallery-strip .gal-item:first-child { grid-row: auto; }
+            .promo-banner { grid-template-columns: 1fr; }
+            .promo-img-wrap { display: none; }
+        }
+        @media(max-width: 600px) {
+            .features-grid { grid-template-columns: 1fr 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .stats-row { grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+            #home .gallery-strip { grid-template-columns: 1fr; grid-template-rows: 200px 160px; max-height: 380px; }
+            #home .gallery-strip .gal-item:nth-child(n+3) { display: none; }
+            .map-cta { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- === HEADER === -->
+<header id="main-header">
+    <a class="logo" href="#" onclick="showSection('home');return false;">
+        <span class="logo-wave">🌊</span> Ponte Cais
+    </a>
+    <nav>
+        <button class="nav-link active-link" onclick="showSection('home')">Início</button>
+        <button class="nav-link" onclick="showSection('cardapio')">Cardápio</button>
+        <button class="nav-link" onclick="showSection('sobre')">Sobre</button>
+        <button class="nav-link" onclick="showSection('reservas')">Reservas</button>
+        <button class="nav-link" onclick="showSection('contato')">Contacto</button>
+        <span class="open-badge">● Aberto</span>
+    </nav>
+</header>
+
+<!-- ===== HOME ===== -->
+<section id="home" class="active">
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="ocean-bg"></div>
+        <div class="bubbles" id="bubbles-container"></div>
+
+        <div class="hero-content">
+            <span class="hero-label">🦞 Inhambane · Moçambique</span>
+            <h1 class="hero-title">Ponte <span class="accent">Cais</span></h1>
+            <p class="hero-sub">Restaurante & Bar à beira do mar</p>
+            <div class="hero-rating">
+                <span class="stars">★★★★☆</span>
+                <span class="rating-num">4.0</span>
+                <span class="rating-count">· 391 avaliações</span>
+                <span class="badge-open">Aberto · Fecha às 23h</span>
+            </div>
+            <div class="hero-btns">
+                <button class="btn btn-coral" onclick="showSection('cardapio')">
+                    <i class="fas fa-utensils"></i> Ver Cardápio
+                </button>
+                <a href="https://wa.me/258867525251" class="btn btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Reservar Agora
+                </a>
+            </div>
+        </div>
+
+        <div class="sunset-card">
+            <i class="fas fa-sun"></i>
+            <strong>Pôr do Sol</strong>
+            Vista directa ao mar<br>Pico: 16h–18h Dom
+        </div>
+        <div class="karaoke-card">
+            <i class="fas fa-microphone"></i>
+            <strong>Karaoke</strong>
+            Todas as Sextas-Feiras<br>Noite animada!
+        </div>
+    </div>
+
+    <!-- FEATURES STRIP -->
+    <div class="features-strip">
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🦐</div>
+                <div class="feature-text">
+                    <strong>Mariscos Frescos</strong>
+                    <span>Camarão, lulas, peixe</span>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🍕</div>
+                <div class="feature-text">
+                    <strong>Pizzas Nota 10</strong>
+                    <span>8 variedades disponíveis</span>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🍺</div>
+                <div class="feature-text">
+                    <strong>Cerveja Gelada</strong>
+                    <span>2M · Cocktails · Shots</span>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🌅</div>
+                <div class="feature-text">
+                    <strong>Vista ao Mar</strong>
+                    <span>Esplanada com pontão</span>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🎤</div>
+                <div class="feature-text">
+                    <strong>Karaoke Sex</strong>
+                    <span>Animação toda semana</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GALLERY -->
+    <div style="padding: 0 0 0 0;">
+        <div class="gallery-strip" id="home" style="display:grid;">
+            <div class="gal-item">
+                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=800" alt="Bar à beira-mar">
+                <div class="gal-overlay"><span class="gal-tag">Vista ao Mar</span></div>
+            </div>
+            <div class="gal-item">
+                <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&q=80&w=600" alt="Camarão grelhado">
+                <div class="gal-overlay"><span class="gal-tag">Camarão Grelhado</span></div>
+            </div>
+            <div class="gal-item">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=600" alt="Pizza">
+                <div class="gal-overlay"><span class="gal-tag">Pizzas Artesanais</span></div>
+            </div>
+            <div class="gal-item">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=600" alt="Esplanada">
+                <div class="gal-overlay"><span class="gal-tag">Esplanada de Madeira</span></div>
+            </div>
+            <div class="gal-item">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=600" alt="Pratos">
+                <div class="gal-overlay"><span class="gal-tag">Pratos da Casa</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROMO BANNER -->
+    <div style="padding: 3rem 5%;">
+        <div class="promo-banner">
+            <div>
+                <h2>Pizzas & Mariscos Nota 10 👌🏽</h2>
+                <p>Os clientes adoram! As pizzas e os mariscos são o ex-líbris do Ponte Cais. Venha descobrir porquê.</p>
+                <button class="btn btn-outline-sand" style="margin-top:1.5rem;" onclick="showSection('cardapio')">Ver Cardápio Completo</button>
+            </div>
+            <div class="promo-img-wrap">
+                <img id="promo-img-swap" src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&q=80&w=400" alt="Prato em destaque">
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- ===== CARDÁPIO ===== -->
+<section id="cardapio">
+    <div class="section-wrap">
+        <div class="section-label"><i class="fas fa-utensils"></i> O que servimos</div>
+        <h2 class="section-title">Nosso Cardápio</h2>
+        <p class="section-desc">Pratos frescos preparados na hora — do mar para a sua mesa, com o sabor autêntico de Inhambane.</p>
+
+        <div class="menu-tabs">
+            <button class="menu-tab active" onclick="filterMenu('todos', this)">🍽 Todos</button>
+            <button class="menu-tab" onclick="filterMenu('pratos', this)">🍗 Pratos</button>
+            <button class="menu-tab" onclick="filterMenu('entradas', this)">🦀 Entradas</button>
+            <button class="menu-tab" onclick="filterMenu('pizzas', this)">🍕 Pizzas</button>
+            <button class="menu-tab" onclick="filterMenu('pequeno', this)">🥚 Pequeno-Almoço</button>
+            <button class="menu-tab" onclick="filterMenu('extras', this)">➕ Extras</button>
+        </div>
+
+        <!-- MENU DISHES (admin-managed cards) -->
+        <div class="menu-grid-cards" id="menu-grid" style="margin-bottom:3rem;"></div>
+
+        <!-- STATIC MENU SECTIONS -->
+        <div id="menu-sections">
+
+            <div class="menu-category" data-cat="pratos">
+                <div class="menu-category-title"><span class="menu-category-emoji">🍗</span>Pratos Principais</div>
+                <div class="menu-list">
+                    <div class="menu-row"><div><div class="menu-item-name">1/4 Frango</div></div><div class="menu-item-price">300 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">1/2 Frango</div></div><div class="menu-item-price">550 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Frango Inteiro</div></div><div class="menu-item-price">1.000 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Peixe Grelhado ou Panado</div><div class="menu-item-desc">Peixe fresco do dia</div></div><div class="menu-item-price">650 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Calamares Grelhados ou Panados</div></div><div class="menu-item-price">650 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Camarão Grelhado ou Panado</div></div><div class="menu-item-price">650 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Combo Camarão & Calamares</div></div><div class="menu-item-price">900 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Peixe Vermelho Médio</div></div><div class="menu-item-price">650 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Peixe Vermelho Normal</div></div><div class="menu-item-price">750 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Peixe Vermelho Grande</div></div><div class="menu-item-price">1.000 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Costelas de Porco</div></div><div class="menu-item-price">750 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">T-Bone</div></div><div class="menu-item-price">750 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Bife no Prato</div></div><div class="menu-item-price">780 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Hambúrguer</div></div><div class="menu-item-price">350 Mt</div></div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="entradas">
+                <div class="menu-category-title"><span class="menu-category-emoji">🥖</span>Entradas</div>
+                <div class="menu-list">
+                    <div class="menu-row"><div><div class="menu-item-name">Pão de Alho</div></div><div class="menu-item-price">180 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Camarão Alho</div></div><div class="menu-item-price">250 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Cabeça de Lula</div></div><div class="menu-item-price">200 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Chouriço</div></div><div class="menu-item-price">200 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Rissóis</div></div><div class="menu-item-price">200 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Chamusas de Carne</div></div><div class="menu-item-price">200 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Croquinhas (Caranguejo)</div></div><div class="menu-item-price">300 Mt</div></div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="pizzas">
+                <div class="menu-category-title"><span class="menu-category-emoji">🍕</span>Pizzas</div>
+                <div class="menu-list">
+                    <div class="menu-row"><div><div class="menu-item-name">Pizza Margarita</div></div><div class="menu-item-price">500 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Pizza Vegetariana</div></div><div class="menu-item-price">600 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Pizza Tropical</div></div><div class="menu-item-price">650 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Pizza de Frango</div></div><div class="menu-item-price">650 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Pizza Bacon & Chouriço</div></div><div class="menu-item-price">700 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Pizza Mexicana</div></div><div class="menu-item-price">700 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Pizza Camarão</div></div><div class="menu-item-price">700 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Pizza Mar e Terra</div></div><div class="menu-item-price">800 Mt</div></div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="pequeno">
+                <div class="menu-category-title"><span class="menu-category-emoji">🥚</span>Pequeno-Almoço & Matabicho</div>
+                <div class="menu-list">
+                    <div class="menu-row"><div><div class="menu-item-name">Pequeno-Almoço Canta aí (Ponte Cais)</div></div><div class="menu-item-price">400 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Hambúrguer</div></div><div class="menu-item-price">350 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Omelete</div></div><div class="menu-item-price">180 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Omelete de Camarão</div></div><div class="menu-item-price">350 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Omelete Mista (Fiambre & Queijo)</div></div><div class="menu-item-price">350 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Sandes / Tosta de Ovo</div></div><div class="menu-item-price">100 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Sandes / Tosta de Queijo</div></div><div class="menu-item-price">160 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Sandes / Tosta de Bacon</div></div><div class="menu-item-price">300 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Sandes / Tosta de Fiambre & Queijo</div></div><div class="menu-item-price">180 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Sandes / Tosta de Galinha</div></div><div class="menu-item-price">250 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Prego no Pão</div></div><div class="menu-item-price">300 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Prego (Refogado) Porco</div></div><div class="menu-item-price">300 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Café</div></div><div class="menu-item-price">50 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Café com Leite</div></div><div class="menu-item-price">100 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Copo com Leite</div></div><div class="menu-item-price">125 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Chá</div></div><div class="menu-item-price">50 Mt</div></div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="extras">
+                <div class="menu-category-title"><span class="menu-category-emoji">➕</span>Extras</div>
+                <div class="menu-list">
+                    <div class="menu-row"><div><div class="menu-item-name">Queijo</div></div><div class="menu-item-price">100 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Chouriço</div></div><div class="menu-item-price">100 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Batata Frita (Chips)</div></div><div class="menu-item-price">100 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Arroz Extra</div></div><div class="menu-item-price">100 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Salada</div></div><div class="menu-item-price">50 Mt</div></div>
+                    <div class="menu-row"><div><div class="menu-item-name">Abacaxi Extra</div></div><div class="menu-item-price">100 Mt</div></div>
+                </div>
+            </div>
+
+            <div class="menu-category" data-cat="todos">
+                <div class="menu-category-title"><span class="menu-category-emoji">🍨</span>Sobremesas</div>
+                <div class="menu-list">
+                    <div class="menu-row"><div><div class="menu-item-name">Gelado com Calda de Chocolate</div></div><div class="menu-item-price">150 Mt</div></div>
+                </div>
+            </div>
+
+        </div><!-- /menu-sections -->
+
+        <div style="text-align:center; margin-top:2rem;">
+            <a href="https://wa.me/258867525251" class="btn btn-whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i> Fazer Pedido via WhatsApp
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SOBRE ===== -->
+<section id="sobre">
+    <div class="section-wrap">
+        <div class="about-split">
+            <div class="about-img-collage">
+                <img class="about-img-main" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=800" alt="Ponte Cais">
+                <img class="about-img-float" src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&q=80&w=400" alt="Pratos">
+                <div class="about-badge"><strong>4.0</strong>★ Google<br>391 reviews</div>
+            </div>
+            <div>
+                <div class="section-label"><i class="fas fa-anchor"></i> A Nossa História</div>
+                <h2 class="section-title">Sabores do Mar de Inhambane</h2>
+                <p style="color:rgba(255,255,255,0.6); margin-bottom:1.2rem;">
+                    O Ponte Cais é mais do que um restaurante — é um ponto de encontro à beira-mar em Inhambane. Com esplanada aberta de madeira e vista directa para o pontão e o Índico, é o lugar perfeito para saborear mariscos frescos, pizzas artesanais e uma cerveja gelada enquanto assiste ao famoso pôr do sol da Baía de Inhambane.
+                </p>
+                <p style="color:rgba(255,255,255,0.6); margin-bottom:1.5rem;">
+                    Aos domingos, o pico de movimento acontece entre as 16h e 18h — a hora dourada do pôr do sol. Às sextas, o karaoke anima as noites e torna o Ponte Cais o epicentro da vida social da cidade.
+                </p>
+
+                <div class="stats-row">
+                    <div class="stat-box"><span class="num">4.0★</span><span class="lbl">Google Maps</span></div>
+                    <div class="stat-box"><span class="num">391</span><span class="lbl">Avaliações</span></div>
+                    <div class="stat-box"><span class="num">23h</span><span class="lbl">Fecha às</span></div>
+                </div>
+
+                <div style="background:rgba(255,107,71,0.1);border:1px solid rgba(255,107,71,0.2);border-radius:14px;padding:1.2rem;margin-top:1rem;">
+                    <p style="font-size:0.9rem;color:var(--sand);font-style:italic;">"As pizzas e os mariscos são nota 10 👌🏽" — cliente no Google Maps</p>
+                </div>
+
+                <div style="margin-top:2rem;display:flex;gap:12px;flex-wrap:wrap;">
+                    <button class="btn btn-coral" onclick="showSection('cardapio')">Ver Cardápio</button>
+                    <button class="btn btn-outline-sand" onclick="showSection('reservas')">Fazer Reserva</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== RESERVAS ===== -->
+<section id="reservas">
+    <div class="section-wrap">
+        <div style="text-align:center;margin-bottom:3rem;">
+            <div class="section-label" style="justify-content:center;">🌅 Reserve a sua mesa</div>
+            <h2 class="section-title">Momentos Inesquecíveis</h2>
+            <p class="section-desc" style="margin:0 auto;">Garanta o seu lugar na esplanada com vista para o mar.</p>
+        </div>
+
+        <div class="booking-wrap">
+            <div>
+                <div class="booking-info-card" style="margin-bottom:1.5rem;">
+                    <h3 style="font-family:'Pacifico',cursive;font-size:1.5rem;margin-bottom:1.5rem;">Porquê reservar?</h3>
+                    <div class="booking-feature"><i class="fas fa-water"></i> Vista directa para o mar e pontão</div>
+                    <div class="booking-feature"><i class="fas fa-shrimp"></i> Mariscos e pizzas premiados pelos clientes</div>
+                    <div class="booking-feature"><i class="fas fa-beer-mug-empty"></i> Cerveja 2M gelada e cocktails</div>
+                    <div class="booking-feature"><i class="fas fa-sun"></i> Pôr do sol com vista panorâmica</div>
+                    <div class="booking-feature"><i class="fas fa-microphone"></i> Karaoke às Sextas-Feiras</div>
+                    <div class="booking-feature"><i class="fas fa-clock"></i> Aberto até às 23h</div>
+                </div>
+                <div style="background:rgba(13,148,136,0.15);border:1px solid rgba(13,148,136,0.25);border-radius:14px;padding:1.2rem;">
+                    <p style="font-size:0.85rem;color:rgba(255,255,255,0.55);margin-bottom:0.5rem;">📍 Como chegar</p>
+                    <p style="font-size:0.9rem;">Código Plus: <strong>49MH+2RQ</strong><br>Inhambane, Moçambique</p>
+                    <a href="https://www.google.com/maps/search/49MH+2RQ+Inhambane" class="btn btn-ocean" style="margin-top:1rem;font-size:0.82rem;padding:8px 16px;" target="_blank"><i class="fas fa-map-marker-alt"></i> Ver no Maps</a>
+                </div>
+            </div>
+
+            <div class="form-wrap">
+                <h3 style="font-weight:800;margin-bottom:1.5rem;">Pedido de Reserva</h3>
+                <form onsubmit="handleBooking(event)">
+                    <div class="form-group">
+                        <label>Nome Completo</label>
+                        <input type="text" placeholder="Ex: João Machava" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefone / WhatsApp</label>
+                        <input type="tel" placeholder="+258 86 000-0000" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Data</label>
+                            <input type="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Horário</label>
+                            <select>
+                                <option>12:00</option><option>13:00</option><option>14:00</option>
+                                <option>16:00</option><option>17:00</option><option>18:00</option>
+                                <option selected>19:00</option><option>20:00</option><option>21:00</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Número de Pessoas</label>
+                        <select>
+                            <option>1 Pessoa</option><option>2 Pessoas</option><option>3 Pessoas</option>
+                            <option selected>4 Pessoas</option><option>5 Pessoas</option>
+                            <option>6 Pessoas</option><option>Mais de 6</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Observações</label>
+                        <textarea rows="2" placeholder="Ex: Mesa com vista, aniversário, alergias..." style="resize:vertical;"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-coral" style="width:100%;justify-content:center;">
+                        <i class="fab fa-whatsapp"></i> Confirmar via WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CONTATO ===== -->
+<section id="contato">
+    <div class="section-wrap">
+        <div style="text-align:center;margin-bottom:3rem;">
+            <div class="section-label" style="justify-content:center;">📞 Fale connosco</div>
+            <h2 class="section-title">Onde Nos Encontrar</h2>
+        </div>
+
+        <div class="contact-cards">
+            <div class="contact-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Localização</h3>
+                <p>Código Plus: 49MH+2RQ<br>Inhambane, Moçambique<br>Vista directa ao pontão</p>
+            </div>
+            <div class="contact-card">
+                <i class="fab fa-whatsapp"></i>
+                <h3>WhatsApp / Telefone</h3>
+                <p>86 752 5251<br>Reservas e pedidos<br>Disponível todos os dias</p>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-clock"></i>
+                <h3>Horário</h3>
+                <p>Seg–Dom: Aberto<br>Fecha às <strong style="color:var(--coral);">23:00</strong><br>Domingos: pico 16h–18h 🌅</p>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-star"></i>
+                <h3>Avaliação</h3>
+                <p>⭐ 4.0 / 5.0 Google<br>391 avaliações<br>Pizza · Camarão · Mariscos</p>
+            </div>
+        </div>
+
+        <div class="map-cta">
+            <div class="map-cta-text">
+                <strong>🏝 Ponte Cais — À beira do mar em Inhambane</strong>
+                <span>Código Plus: 49MH+2RQ · Tel: 86 752 5251</span>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <a href="https://www.google.com/maps/search/49MH+2RQ+Inhambane+Mozambique" class="btn btn-ocean" target="_blank"><i class="fas fa-map-marked-alt"></i> Abrir no Maps</a>
+                <a href="https://wa.me/258867525251" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- === FOOTER === -->
+<footer>
+    <div class="footer-logo">🌊 Ponte Cais</div>
+    <div class="footer-tagline">Restaurante & Bar à Beira-Mar · Inhambane, Moçambique</div>
+    <div class="social-links">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://wa.me/258867525251" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <p class="footer-copy">© 2026 Ponte Cais · Todos os direitos reservados · Inhambane, Moçambique</p>
+    <p class="footer-xtack">✦ XTACK OFICIAL ✦</p>
+    <div id="footer-admin-trigger"></div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/258867525251" class="wa-float" aria-label="WhatsApp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<div id="admin-trigger"></div>
+
+<!-- ADMIN LOGIN -->
+<div id="admin-login">
+    <div class="login-box">
+        <button class="login-close" onclick="closeAdminLogin()">✕</button>
+        <h3>Admin</h3>
+        <p>Acesso restrito · Ponte Cais</p>
+        <input type="password" id="admin-pass" placeholder="••••••••"
+            onkeydown="if(event.key==='Enter') checkLogin()">
+        <p id="login-err">Senha incorrecta. Tente novamente.</p>
+        <button class="login-btn" onclick="checkLogin()"><i class="fas fa-lock"></i> Entrar</button>
+    </div>
+</div>
+
+<div id="admin-overlay" onclick="closeAdmin()"></div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel">
+    <div class="ap-header">
+        <div class="ap-header-left">
+            <i class="fas fa-shield-alt"></i>
+            <div>
+                <h2>Painel Admin</h2>
+                <div class="ap-header-sub">Ponte Cais</div>
+            </div>
+        </div>
+        <button class="ap-close" onclick="closeAdmin()"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div class="ap-body">
+        <!-- Cor -->
+        <div class="ap-section">
+            <div class="ap-section-title"><i class="fas fa-palette"></i> Cor do Painel</div>
+            <div class="ap-section-body">
+                <div class="accent-colors" id="accent-colors">
+                    <div class="accent-dot selected" style="background:#FF6B47" data-color="#FF6B47" onclick="setAdminAccent('#FF6B47',this)"></div>
+                    <div class="accent-dot" style="background:#0891b2" data-color="#0891b2" onclick="setAdminAccent('#0891b2',this)"></div>
+                    <div class="accent-dot" style="background:#0d9488" data-color="#0d9488" onclick="setAdminAccent('#0d9488',this)"></div>
+                    <div class="accent-dot" style="background:#84cc16" data-color="#84cc16" onclick="setAdminAccent('#84cc16',this)"></div>
+                    <div class="accent-dot" style="background:#fbbf24" data-color="#fbbf24" onclick="setAdminAccent('#fbbf24',this)"></div>
+                </div>
+                <div class="color-row">
+                    <label>Personalizada</label>
+                    <input type="color" id="cp-accent" value="#FF6B47" oninput="setAdminAccent(this.value,null);document.getElementById('cp-accent-val').textContent=this.value;">
+                    <span class="color-val" id="cp-accent-val">#FF6B47</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Imagem promo -->
+        <div class="ap-section">
+            <div class="ap-section-title"><i class="fas fa-image"></i> Imagem de Destaque (Home)</div>
+            <div class="ap-section-body">
+                <div class="upload-area">
+                    <input type="file" accept="image/*" onchange="previewPromoImg(event)">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Clica ou arrasta uma imagem aqui</p>
+                </div>
+                <img id="promo-img-preview" class="upload-preview" alt="Preview">
+                <div style="display:flex;gap:8px;">
+                    <button class="ap-btn ap-btn-primary" onclick="applyPromoImg()"><i class="fas fa-check"></i> Aplicar</button>
+                    <button class="ap-btn ap-btn-ghost" onclick="clearPromoImg()"><i class="fas fa-undo"></i> Repor</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Adicionar prato -->
+        <div class="ap-section">
+            <div class="ap-section-title"><i class="fas fa-plus-circle"></i> Adicionar Prato</div>
+            <div class="ap-section-body">
+                <div class="menu-form">
+                    <div class="upload-area" id="dish-upload-area">
+                        <input type="file" accept="image/*" onchange="previewDishImg(event)">
+                        <i class="fas fa-utensils"></i>
+                        <p>Foto do prato</p>
+                    </div>
+                    <img id="dish-img-preview" class="upload-preview" alt="Preview prato">
+                    <span class="ap-label">Nome do Prato</span>
+                    <input type="text" id="dish-name" class="ap-input" placeholder="Ex: Camarão Tigre">
+                    <span class="ap-label">Descrição</span>
+                    <textarea id="dish-desc" class="ap-input" rows="2" placeholder="Ex: Camarão grelhado com manteiga e alho..." style="resize:vertical;"></textarea>
+                    <span class="ap-label">Preço (Mt)</span>
+                    <input type="text" id="dish-price" class="ap-input" placeholder="Ex: 850 Mt">
+                    <button class="ap-btn ap-btn-primary" style="width:100%;justify-content:center;" onclick="addDishToMenu()">
+                        <i class="fas fa-plus"></i> Adicionar ao Cardápio
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gerir cardápio -->
+        <div class="ap-section">
+            <div class="ap-section-title"><i class="fas fa-list-ul"></i> Gerir Pratos</div>
+            <div class="ap-section-body">
+                <div class="admin-menu-list" id="admin-menu-list"></div>
+                <p id="admin-menu-empty" style="font-size:0.78rem;color:#444;text-align:center;padding:1rem 0;display:none;">Nenhum prato especial adicionado.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="ap-logout-row">
+        <button class="ap-btn ap-btn-danger" style="width:100%;justify-content:center;" onclick="logoutAdmin()">
+            <i class="fas fa-sign-out-alt"></i> Terminar Sessão
+        </button>
+    </div>
+</div>
+
+<div id="ap-toast"></div>
+
+<script>
+/* ================================================================
+   CONFIG
+================================================================ */
+const ADMIN_PASS = 'pontecais2026';
+let adminLoggedIn = false;
+
+/* ================================================================
+   BUBBLES ANIMATION
+================================================================ */
+(function createBubbles() {
+    const container = document.getElementById('bubbles-container');
+    if (!container) return;
+    for (let i = 0; i < 15; i++) {
+        const b = document.createElement('div');
+        b.className = 'bubble';
+        const size = Math.random() * 60 + 10;
+        b.style.cssText = `
+            width:${size}px; height:${size}px;
+            left:${Math.random()*100}%;
+            animation-duration:${Math.random()*15+10}s;
+            animation-delay:${Math.random()*10}s;
+        `;
+        container.appendChild(b);
+    }
+})();
+
+/* ================================================================
+   MENU DATA
+================================================================ */
+const DEFAULT_MENU = [
+    {
+        id: 'default_1',
+        name: 'Combo Camarão & Calamares',
+        desc: 'Camarão e calamares grelhados ou panados juntos — um combo irresistível com arroz e salada.',
+        price: '900 Mt',
+        img: 'https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&q=80&w=700'
+    },
+    {
+        id: 'default_2',
+        name: 'Pizza Mar e Terra',
+        desc: 'Pizza com frutos do mar e carne, a maior e mais completa da casa. Bom apetite!',
+        price: '800 Mt',
+        img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=700'
+    },
+    {
+        id: 'default_3',
+        name: 'Peixe Vermelho Grelhado',
+        desc: 'Peixe vermelho do mar de Inhambane grelhado no carvão, com batata e salada.',
+        price: '800–1.000 Mt',
+        img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=700'
+    },
+    {
+        id: 'default_4',
+        name: 'Pequeno-Almoço Canta Aí',
+        desc: 'O pequeno-almoço completo do Ponte Cais — a melhor forma de começar o dia à beira-mar.',
+        price: '400 Mt',
+        img: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&q=80&w=700'
+    }
+];
+
+let MENU_ITEMS = [];
+
+/* ================================================================
+   LOCALSTORAGE
+================================================================ */
+function saveData(k, v) { try { localStorage.setItem(k, typeof v==='string'?v:JSON.stringify(v)); } catch(e){} }
+function loadData(k) { try { return localStorage.getItem(k); } catch(e){ return null; } }
+
+function loadSettings() {
+    const saved = loadData('pontecais_menu');
+    MENU_ITEMS = saved ? (JSON.parse(saved) || [...DEFAULT_MENU]) : [...DEFAULT_MENU];
+
+    const accent = loadData('pontecais_admin_accent');
+    if (accent) applyAdminAccentDirect(accent);
+
+    const promoImg = loadData('pontecais_promo_img');
+    if (promoImg) { const pi = document.getElementById('promo-img-swap'); if (pi) pi.src = promoImg; }
+
+    renderMenuGrid();
+}
+
+/* ================================================================
+   NAVIGATION
+================================================================ */
+const headerEl = document.getElementById('main-header');
+function showSection(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    const t = document.getElementById(id);
+    if (t) { t.classList.remove('active'); void t.offsetWidth; t.classList.add('active'); }
+    document.querySelectorAll('.nav-link').forEach(l => {
+        l.classList.remove('active-link');
+        if ((l.getAttribute('onclick')||'').includes(`'${id}'`)) l.classList.add('active-link');
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (id === 'cardapio') renderMenuGrid();
+}
+window.addEventListener('scroll', () => headerEl.classList.toggle('scrolled', window.scrollY > 60));
+
+/* ================================================================
+   MENU FILTER
+================================================================ */
+function filterMenu(cat, btn) {
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+
+    const categories = document.querySelectorAll('.menu-category');
+    categories.forEach(c => {
+        if (cat === 'todos' || c.dataset.cat === cat) {
+            c.style.display = '';
+        } else {
+            c.style.display = 'none';
+        }
+    });
+    // dish cards always visible
+}
+
+/* ================================================================
+   MENU RENDER
+================================================================ */
+function renderMenuGrid() {
+    const grid = document.getElementById('menu-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    if (!MENU_ITEMS.length) return;
+    MENU_ITEMS.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'dish-card';
+        card.dataset.id = item.id;
+        card.innerHTML = `
+            <button class="card-admin-del" title="Remover" onclick="removeDish('${item.id}');event.stopPropagation();"><i class="fas fa-trash"></i></button>
+            <img class="dish-card-img" src="${esc(item.img)}" alt="${esc(item.name)}" loading="lazy"
+                onerror="this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=700'">
+            <div class="dish-card-price">${esc(item.price)}</div>
+            <div class="dish-card-body">
+                <div class="dish-card-name">${esc(item.name)}</div>
+                <div class="dish-card-desc">${esc(item.desc)}</div>
+            </div>`;
+        grid.appendChild(card);
+    });
+}
+
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function renderAdminMenuList() {
+    const list = document.getElementById('admin-menu-list');
+    const empty = document.getElementById('admin-menu-empty');
+    if (!list) return;
+    list.innerHTML = '';
+    if (!MENU_ITEMS.length) { if(empty) empty.style.display='block'; return; }
+    if (empty) empty.style.display = 'none';
+    MENU_ITEMS.forEach(item => {
+        const el = document.createElement('div');
+        el.className = 'admin-menu-item';
+        el.innerHTML = `
+            <img src="${esc(item.img)}" alt="${esc(item.name)}" onerror="this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=100'">
+            <div class="admin-menu-item-info"><strong>${esc(item.name)}</strong><span>${esc(item.price)}</span></div>
+            <button class="admin-menu-item-del" onclick="removeDish('${item.id}')"><i class="fas fa-trash"></i></button>`;
+        list.appendChild(el);
+    });
+}
+
+/* ================================================================
+   CRUD
+================================================================ */
+let pendingDishImg = '', pendingPromoImg = '';
+
+function previewDishImg(e) {
+    const file = e.target.files[0]; if(!file) return;
+    const r = new FileReader();
+    r.onload = ev => {
+        pendingDishImg = ev.target.result;
+        const p = document.getElementById('dish-img-preview');
+        p.src = pendingDishImg; p.style.display = 'block';
+    };
+    r.readAsDataURL(file);
+}
+
+function addDishToMenu() {
+    if (!adminLoggedIn) { showToast('Acesso restrito.'); return; }
+    const name = document.getElementById('dish-name').value.trim();
+    if (!name) { showToast('Preenche o nome do prato.'); return; }
+    const newItem = {
+        id: 'dish_' + Date.now(),
+        name,
+        desc: document.getElementById('dish-desc').value.trim() || 'Prato especial da casa.',
+        price: document.getElementById('dish-price').value.trim() || 'Preço a consultar',
+        img: pendingDishImg || 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=700'
+    };
+    MENU_ITEMS.push(newItem);
+    saveData('pontecais_menu', MENU_ITEMS);
+    renderMenuGrid(); renderAdminMenuList();
+    document.getElementById('dish-name').value = '';
+    document.getElementById('dish-desc').value = '';
+    document.getElementById('dish-price').value = '';
+    document.getElementById('dish-img-preview').style.display = 'none';
+    pendingDishImg = '';
+    showToast('Prato adicionado!');
+}
+
+function removeDish(id) {
+    if (!adminLoggedIn) return;
+    MENU_ITEMS = MENU_ITEMS.filter(x => x.id !== id);
+    saveData('pontecais_menu', MENU_ITEMS);
+    renderMenuGrid(); renderAdminMenuList();
+    showToast('Prato removido.');
+}
+
+function previewPromoImg(e) {
+    const file = e.target.files[0]; if(!file) return;
+    const r = new FileReader();
+    r.onload = ev => {
+        pendingPromoImg = ev.target.result;
+        const p = document.getElementById('promo-img-preview');
+        p.src = pendingPromoImg; p.style.display = 'block';
+    };
+    r.readAsDataURL(file);
+}
+
+function applyPromoImg() {
+    if (!adminLoggedIn) return;
+    if (!pendingPromoImg) { showToast('Seleciona uma imagem.'); return; }
+    const pi = document.getElementById('promo-img-swap');
+    if (pi) pi.src = pendingPromoImg;
+    saveData('pontecais_promo_img', pendingPromoImg);
+    showToast('Imagem aplicada!');
+}
+
+function clearPromoImg() {
+    if (!adminLoggedIn) return;
+    const pi = document.getElementById('promo-img-swap');
+    if (pi) pi.src = 'https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&q=80&w=400';
+    localStorage.removeItem('pontecais_promo_img');
+    document.getElementById('promo-img-preview').style.display = 'none';
+    pendingPromoImg = '';
+    showToast('Imagem reposta.');
+}
+
+/* ================================================================
+   ADMIN COLOR
+================================================================ */
+function applyAdminAccentDirect(color) {
+    document.documentElement.style.setProperty('--admin-accent', color);
+    document.getElementById('cp-accent').value = color;
+    document.getElementById('cp-accent-val').textContent = color;
+}
+function setAdminAccent(color, dotEl) {
+    if (!adminLoggedIn) { showToast('Acesso restrito.'); return; }
+    applyAdminAccentDirect(color);
+    document.querySelectorAll('.accent-dot').forEach(d => d.classList.remove('selected'));
+    if (dotEl) dotEl.classList.add('selected');
+    saveData('pontecais_admin_accent', color);
+    showToast('Cor alterada.');
+}
+
+/* ================================================================
+   ADMIN LOGIN
+================================================================ */
+let clickCount = 0, clickTimer = null;
+function handleAdminTrigger() {
+    clickCount++;
+    clearTimeout(clickTimer);
+    clickTimer = setTimeout(() => { clickCount = 0; }, 2000);
+    if (clickCount >= 5) { clickCount = 0; adminLoggedIn ? openAdmin() : openAdminLogin(); }
+}
+document.getElementById('admin-trigger').addEventListener('click', handleAdminTrigger);
+document.getElementById('footer-admin-trigger').addEventListener('click', handleAdminTrigger);
+
+function openAdminLogin() { document.getElementById('admin-login').classList.add('show'); setTimeout(()=>document.getElementById('admin-pass').focus(),100); }
+function closeAdminLogin() { document.getElementById('admin-login').classList.remove('show'); document.getElementById('admin-pass').value=''; document.getElementById('login-err').style.display='none'; }
+function checkLogin() {
+    if (document.getElementById('admin-pass').value === ADMIN_PASS) {
+        adminLoggedIn = true; closeAdminLogin(); openAdmin(); showToast('Bem-vindo, Ponte Cais!');
+    } else {
+        document.getElementById('login-err').style.display='block';
+        document.getElementById('admin-pass').value='';
+        document.getElementById('admin-pass').focus();
+    }
+}
+function openAdmin() {
+    document.getElementById('admin-panel').classList.add('open');
+    document.getElementById('admin-overlay').classList.add('show');
+    document.body.classList.add('admin-active');
+    renderAdminMenuList();
+}
+function closeAdmin() {
+    document.getElementById('admin-panel').classList.remove('open');
+    document.getElementById('admin-overlay').classList.remove('show');
+}
+function logoutAdmin() { adminLoggedIn=false; document.body.classList.remove('admin-active'); closeAdmin(); showToast('Sessão encerrada.'); }
+
+/* ================================================================
+   BOOKING
+================================================================ */
+function handleBooking(e) {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.querySelector('input[type="text"]').value;
+    const tel = form.querySelector('input[type="tel"]').value;
+    const date = form.querySelector('input[type="date"]').value;
+    const hour = form.querySelector('select').value;
+    const pax = form.querySelectorAll('select')[1].value;
+    const note = form.querySelector('textarea').value;
+    const msg = `🌊 Reserva Ponte Cais\n\nNome: ${name}\nTelefone: ${tel}\nData: ${date}\nHorário: ${hour}\nPessoas: ${pax}${note ? '\nObs: '+note : ''}`;
+    window.open(`https://wa.me/258867525251?text=${encodeURIComponent(msg)}`, '_blank');
+}
+document.querySelectorAll('input[type="date"]').forEach(i => i.setAttribute('min', new Date().toISOString().split('T')[0]));
+
+/* ================================================================
+   TOAST
+================================================================ */
+let toastTimer;
+function showToast(msg) {
+    const t = document.getElementById('ap-toast');
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+/* ================================================================
+   INIT
+================================================================ */
+loadSettings();
+</script>
+</body>
+</html>
